@@ -8,15 +8,8 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
 <header id="cs-navigation">
   <div class="cs-container">
     <!--Nav Logo-->
-    <a href="/" class="cs-logo" aria-label="back to home">
-      <img
-        src="/assets/svgs/logo-black.svg"
-        alt=""
-        width="210"
-        height="29"
-        aria-hidden="true"
-        decoding="async"
-      />
+    <a href="/" class="cs-logo vw-holographic" aria-label="back to home">
+      <span class="vw-chrome-text" data-text="NEON RIDER">NEON RIDER</span>
     </a>
     <!--Navigation List-->
     <nav class="cs-nav" role="navigation">
@@ -87,7 +80,7 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
         </ul>
       </div>
     </nav>
-    <a href="/contact" class="cs-button-solid cs-nav-button">Contact Us</a>
+    <a href="/contact" class="vw-neon-button green cs-nav-button">CONNECT</a>
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
     <DarkModeToggle />
   </div>
@@ -109,13 +102,15 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
 
   #cs-navigation {
     /* remove the font family so the Stitch inherits the fonts from your global stylesheet */
-    font-family: "Roboto", "Arial", sans-serif;
+    font-family: var(--vw-font-secondary);
     width: 100%;
     /* prevents padding from affecting height and width */
     box-sizing: border-box;
     padding: (12/16rem) (16/16rem);
-    background-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background: linear-gradient(135deg, rgba(26, 0, 51, 0.95) 0%, rgba(45, 27, 105, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--vw-electric-blue);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     position: fixed;
     z-index: 10000;
 
@@ -164,7 +159,7 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
 
     .cs-logo {
       width: 40%;
-      max-width: (146/16rem);
+      max-width: (200/16rem);
       height: 100%;
       margin: 0 auto 0 0;
       /* prevents padding from affecting height and width */
@@ -174,15 +169,10 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
       justify-content: center;
       align-items: center;
       z-index: 10;
-
-      img {
-        width: 100%;
-        height: 100%;
-        /* ensures the image never overflows the container. It stays contained within it's width and height and expands to fill it then stops once it reaches an edge */
-        object-fit: contain;
-        /* places the image to the left edge of the parent */
-        object-position: left;
-      }
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
     }
 
     .cs-toggle {
@@ -333,19 +323,30 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
     .cs-li-link {
       /* 16px - 24px */
       font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: inherit;
+      color: var(--vw-electric-blue);
       line-height: 1.2em;
       text-decoration: none;
       margin: 0;
       display: inline-block;
       position: relative;
+      font-family: var(--vw-font-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: var(--vw-neon-pink);
+        text-shadow: var(--vw-neon-glow-pink);
+      }
 
       &:before {
         /* active state underline */
         content: "";
         width: 100%;
-        height: 1px;
-        background: currentColor;
+        height: 2px;
+        background: var(--vw-neon-pink);
+        box-shadow: var(--vw-neon-glow-pink);
         opacity: 1;
         display: none;
         position: absolute;
@@ -354,6 +355,9 @@ import DarkModeToggle from "@components/DarkModeToggle.astro";
       }
 
       &.cs-active {
+        color: var(--vw-neon-pink);
+        text-shadow: var(--vw-neon-glow-pink);
+        
         &:before {
           display: block;
         }

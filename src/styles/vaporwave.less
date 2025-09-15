@@ -1,0 +1,473 @@
+/* VAPORWAVE THEME STYLES */
+
+/*-- -------------------------- -->
+<---    Vaporwave Variables     -->
+<--- -------------------------- -*/
+
+:root {
+  /* Vaporwave Color Palette */
+  --vw-deep-purple: #1a0033;
+  --vw-purple: #2d1b69;
+  --vw-magenta: #ff006e;
+  --vw-hot-pink: #ff1493;
+  --vw-electric-blue: #00ffff;
+  --vw-cyan: #00d4ff;
+  --vw-neon-green: #39ff14;
+  --vw-neon-pink: #ff10f0;
+  --vw-sunset-orange: #ff6b35;
+  --vw-sunset-yellow: #f7931e;
+  --vw-chrome-silver: #c0c0c0;
+  --vw-dark-bg: #0a0015;
+  --vw-grid-color: rgba(0, 255, 255, 0.3);
+  
+  /* Gradient Backgrounds */
+  --vw-main-gradient: linear-gradient(135deg, var(--vw-deep-purple) 0%, var(--vw-purple) 50%, var(--vw-magenta) 100%);
+  --vw-sunset-gradient: linear-gradient(180deg, var(--vw-sunset-orange) 0%, var(--vw-magenta) 50%, var(--vw-deep-purple) 100%);
+  --vw-chrome-gradient: linear-gradient(45deg, #c0c0c0 0%, #ffffff 50%, #c0c0c0 100%);
+  
+  /* Neon Glow Effects */
+  --vw-neon-glow-cyan: 0 0 5px var(--vw-electric-blue), 0 0 10px var(--vw-electric-blue), 0 0 15px var(--vw-electric-blue), 0 0 20px var(--vw-electric-blue);
+  --vw-neon-glow-pink: 0 0 5px var(--vw-neon-pink), 0 0 10px var(--vw-neon-pink), 0 0 15px var(--vw-neon-pink), 0 0 20px var(--vw-neon-pink);
+  --vw-neon-glow-green: 0 0 5px var(--vw-neon-green), 0 0 10px var(--vw-neon-green), 0 0 15px var(--vw-neon-green), 0 0 20px var(--vw-neon-green);
+  
+  /* Typography */
+  --vw-font-primary: 'Orbitron', 'Courier New', monospace;
+  --vw-font-secondary: 'Rajdhani', 'Arial', sans-serif;
+}
+
+/*-- -------------------------- -->
+<---    Global Vaporwave Base   -->
+<--- -------------------------- -*/
+
+body.vaporwave {
+  background: var(--vw-main-gradient);
+  background-attachment: fixed;
+  color: var(--vw-electric-blue);
+  font-family: var(--vw-font-secondary);
+  position: relative;
+  overflow-x: hidden;
+  
+  &::before {
+    /* Grid overlay */
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(var(--vw-grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--vw-grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 1;
+    animation: gridPulse 4s ease-in-out infinite;
+  }
+  
+  &::after {
+    /* CRT scanlines */
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 255, 0.03) 2px,
+      rgba(0, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+    animation: scanlines 0.1s linear infinite;
+  }
+}
+
+/*-- -------------------------- -->
+<---      Animations            -->
+<--- -------------------------- -*/
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes glitchShake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-2px); }
+  20% { transform: translateX(2px); }
+  30% { transform: translateX(-1px); }
+  40% { transform: translateX(1px); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+  90% { transform: translateX(-2px); }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes holographicShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes vhsDistortion {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(2px); }
+  20% { transform: translateX(-2px); }
+  30% { transform: translateX(1px); }
+  40% { transform: translateX(-1px); }
+  50% { transform: translateX(2px); }
+  60% { transform: translateX(-2px); }
+  70% { transform: translateX(1px); }
+  80% { transform: translateX(-1px); }
+  90% { transform: translateX(2px); }
+}
+
+/*-- -------------------------- -->
+<---    Floating Shapes         -->
+<--- -------------------------- -*/
+
+.vw-floating-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.vw-shape {
+  position: absolute;
+  animation: floatUp 15s linear infinite;
+  
+  &.triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid var(--vw-neon-pink);
+    filter: drop-shadow(var(--vw-neon-glow-pink));
+  }
+  
+  &.square {
+    width: 20px;
+    height: 20px;
+    background: var(--vw-electric-blue);
+    box-shadow: var(--vw-neon-glow-cyan);
+    transform: rotate(45deg);
+  }
+  
+  &.circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--vw-neon-green);
+    box-shadow: var(--vw-neon-glow-green);
+  }
+  
+  &.diamond {
+    width: 16px;
+    height: 16px;
+    background: var(--vw-hot-pink);
+    transform: rotate(45deg);
+    box-shadow: var(--vw-neon-glow-pink);
+  }
+}
+
+/*-- -------------------------- -->
+<---    Neon Typography         -->
+<--- -------------------------- -*/
+
+.vw-neon-text {
+  color: var(--vw-electric-blue);
+  text-shadow: var(--vw-neon-glow-cyan);
+  animation: neonFlicker 2s ease-in-out infinite;
+  font-family: var(--vw-font-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.vw-chrome-text {
+  background: var(--vw-chrome-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--vw-font-primary);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  position: relative;
+  
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -1;
+  }
+}
+
+.vw-glitch-text {
+  position: relative;
+  color: var(--vw-electric-blue);
+  font-family: var(--vw-font-primary);
+  animation: glitchShake 0.3s ease-in-out infinite;
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &::before {
+    color: var(--vw-neon-pink);
+    animation: vhsDistortion 0.2s ease-in-out infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+  
+  &::after {
+    color: var(--vw-neon-green);
+    animation: vhsDistortion 0.3s ease-in-out infinite reverse;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  }
+}
+
+/*-- -------------------------- -->
+<---    Holographic Elements    -->
+<--- -------------------------- -*/
+
+.vw-holographic {
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  background-size: 200% 200%;
+  animation: holographicShimmer 3s ease-in-out infinite;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 255, 0.1),
+      rgba(255, 16, 240, 0.1),
+      rgba(57, 255, 20, 0.1),
+      transparent
+    );
+    animation: holographicShimmer 2s ease-in-out infinite reverse;
+  }
+}
+
+/*-- -------------------------- -->
+<---    Neon Buttons & Links    -->
+<--- -------------------------- -*/
+
+.vw-neon-button {
+  background: transparent;
+  border: 2px solid var(--vw-electric-blue);
+  color: var(--vw-electric-blue);
+  padding: 12px 24px;
+  font-family: var(--vw-font-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+  
+  &:hover {
+    box-shadow: var(--vw-neon-glow-cyan);
+    text-shadow: var(--vw-neon-glow-cyan);
+    transform: translateY(-2px);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &.pink {
+    border-color: var(--vw-neon-pink);
+    color: var(--vw-neon-pink);
+    
+    &:hover {
+      box-shadow: var(--vw-neon-glow-pink);
+      text-shadow: var(--vw-neon-glow-pink);
+    }
+  }
+  
+  &.green {
+    border-color: var(--vw-neon-green);
+    color: var(--vw-neon-green);
+    
+    &:hover {
+      box-shadow: var(--vw-neon-glow-green);
+      text-shadow: var(--vw-neon-glow-green);
+    }
+  }
+}
+
+/*-- -------------------------- -->
+<---    Palm Tree Silhouettes   -->
+<--- -------------------------- -*/
+
+.vw-palm-trees {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: var(--vw-sunset-gradient);
+  z-index: 4;
+  pointer-events: none;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 150px;
+    background: #000;
+    clip-path: polygon(
+      45% 100%, 55% 100%, 52% 80%, 60% 75%, 65% 70%, 70% 60%, 75% 50%, 
+      80% 40%, 85% 30%, 90% 20%, 85% 15%, 80% 25%, 75% 35%, 70% 45%, 
+      65% 55%, 60% 65%, 55% 70%, 50% 75%, 45% 70%, 40% 65%, 35% 55%, 
+      30% 45%, 25% 35%, 20% 25%, 15% 15%, 10% 20%, 15% 30%, 20% 40%, 
+      25% 50%, 30% 60%, 35% 70%, 40% 75%, 48% 80%
+    );
+  }
+  
+  &::before {
+    left: 10%;
+    transform: scale(1.2);
+  }
+  
+  &::after {
+    right: 15%;
+    transform: scale(0.8) scaleX(-1);
+  }
+}
+
+/*-- -------------------------- -->
+<---    VHS Distortion Effects  -->
+<--- -------------------------- -*/
+
+.vw-vhs-distortion {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 100px,
+      rgba(255, 16, 240, 0.03) 100px,
+      rgba(255, 16, 240, 0.03) 101px
+    );
+    animation: vhsDistortion 0.1s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+/*-- -------------------------- -->
+<---    Responsive Adjustments  -->
+<--- -------------------------- -*/
+
+@media only screen and (max-width: 768px) {
+  body.vaporwave {
+    &::before {
+      background-size: 30px 30px;
+    }
+  }
+  
+  .vw-palm-trees {
+    height: 120px;
+    
+    &::before,
+    &::after {
+      width: 40px;
+      height: 100px;
+    }
+  }
+  
+  .vw-shape {
+    &.triangle {
+      border-left-width: 10px;
+      border-right-width: 10px;
+      border-bottom-width: 18px;
+    }
+    
+    &.square,
+    &.diamond {
+      width: 15px;
+      height: 15px;
+    }
+    
+    &.circle {
+      width: 13px;
+      height: 13px;
+    }
+  }
+}

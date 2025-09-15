@@ -1,0 +1,56 @@
+---
+// Floating geometric shapes component for vaporwave aesthetic
+---
+
+<div class="vw-floating-shapes">
+  <!-- Generate multiple floating shapes -->
+  <div class="vw-shape triangle" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="vw-shape square" style="left: 20%; animation-delay: 2s;"></div>
+  <div class="vw-shape circle" style="left: 30%; animation-delay: 4s;"></div>
+  <div class="vw-shape diamond" style="left: 40%; animation-delay: 6s;"></div>
+  <div class="vw-shape triangle" style="left: 50%; animation-delay: 8s;"></div>
+  <div class="vw-shape square" style="left: 60%; animation-delay: 10s;"></div>
+  <div class="vw-shape circle" style="left: 70%; animation-delay: 12s;"></div>
+  <div class="vw-shape diamond" style="left: 80%; animation-delay: 14s;"></div>
+  <div class="vw-shape triangle" style="left: 90%; animation-delay: 16s;"></div>
+  
+  <!-- Second layer with different timing -->
+  <div class="vw-shape square" style="left: 15%; animation-delay: 1s;"></div>
+  <div class="vw-shape circle" style="left: 25%; animation-delay: 3s;"></div>
+  <div class="vw-shape diamond" style="left: 35%; animation-delay: 5s;"></div>
+  <div class="vw-shape triangle" style="left: 45%; animation-delay: 7s;"></div>
+  <div class="vw-shape square" style="left: 55%; animation-delay: 9s;"></div>
+  <div class="vw-shape circle" style="left: 65%; animation-delay: 11s;"></div>
+  <div class="vw-shape diamond" style="left: 75%; animation-delay: 13s;"></div>
+  <div class="vw-shape triangle" style="left: 85%; animation-delay: 15s;"></div>
+</div>
+
+<!-- Palm trees silhouettes -->
+<div class="vw-palm-trees"></div>
+
+<script>
+  // Add more dynamic shapes periodically
+  function createRandomShape() {
+    const shapes = ['triangle', 'square', 'circle', 'diamond'];
+    const container = document.querySelector('.vw-floating-shapes');
+    
+    if (container) {
+      const shape = document.createElement('div');
+      shape.className = `vw-shape ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+      shape.style.left = Math.random() * 100 + '%';
+      shape.style.animationDelay = '0s';
+      
+      container.appendChild(shape);
+      
+      // Remove shape after animation completes
+      setTimeout(() => {
+        if (shape.parentNode) {
+          shape.parentNode.removeChild(shape);
+        }
+      }, 15000);
+    }
+  }
+  
+  // Create a new shape every 3 seconds
+  setInterval(createRandomShape, 3000);
+</script>
