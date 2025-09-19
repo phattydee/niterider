@@ -3,4 +3,4 @@ services:
   astro-site:
     build: .
     ports:
-      - "80:80"
+      - "88:80"
